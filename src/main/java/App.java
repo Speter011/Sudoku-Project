@@ -5,6 +5,5 @@ public class App {
 
         GridGenerator GridInstance = new GridGenerator();
         GridInstance.gridToString();
-
     }
 }
