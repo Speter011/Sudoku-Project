@@ -4,13 +4,11 @@ import java.util.Random;
 
 public class GridGenerator {
 
-
     private int[][] matrixFirst;
     private final int size = 9;
-    private int counter = 0;
     private static int min = 1;
     private static int max = 9;
-
+    private int counter = 0;
 
     public GridGenerator() {
         this.matrixFirst = new int[size][size];
@@ -72,7 +70,6 @@ public class GridGenerator {
 
     private boolean inSquare(int[][] matrix, int value, int row, int col) {
         //identify which of the 9 squares we are using
-        int[][] square;
         int sqrt = (int) Math.sqrt(size);
         int cornerRow = row - row % sqrt;
         int cornerColumn = col - col % sqrt;
@@ -164,12 +161,10 @@ public class GridGenerator {
     public static void removeNumbers(int[][] matrix, int difficulty){
         int rangeMin = min - 1;
         int rangeMax = max - 1;
-        int count = 0;
         int row = 0;
         int col = 0;
 
         for(int i = 0; i < difficulty; i++){
-
 
             while (matrix[row][col] == 0){
                 Random rn = new Random();

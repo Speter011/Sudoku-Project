@@ -1,9 +1,8 @@
-import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class UserInterface {
 
-    public void InterfaceCreation( int [][] matrix, Scanner input){
+    public void InterfaceCreation(int [][] matrix, Scanner input){
 
         String option = "";
         while(!option.equals("2")){
