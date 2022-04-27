@@ -7,14 +7,14 @@ public class GridGenerator {
 
     private int[][] matrixFirst;
     private final int size = 9;
+    private int counter = 0;
+    private static int min = 1;
+    private static int max = 9;
+
 
     public GridGenerator() {
         this.matrixFirst = new int[size][size];
     }
-
-    private int counter = 0;
-    private static int min = 1;
-    private static int max = 9;
 
     public void gridToString(int[][] matrix) {
 
@@ -35,7 +35,6 @@ public class GridGenerator {
     }
 
 
-    //az elso kocka mindig true-t ad mert bele raktunk egy szamot
     public boolean isGridFull(int[][] matrix) {
         for (int i = 0; i < size; i++) {
             // length returns number of rows
@@ -179,6 +178,5 @@ public class GridGenerator {
             }
             matrix[row][col] = 0;
         }
-        System.out.println(count);
     }
 }
