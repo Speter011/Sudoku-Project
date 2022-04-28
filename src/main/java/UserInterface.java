@@ -17,7 +17,7 @@ public class UserInterface {
                 do {
                     option = (input.next());
                     if(option.equals("1")) {
-                        GridGenerator.removeNumbers(matrix, 81 - 80);//36 az eredeti
+                        GridGenerator.removeNumbers(matrix, 81 - 79);//36 az eredeti
                         return;
                     }
                     if(option.equals("2")) {

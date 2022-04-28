@@ -13,9 +13,8 @@ public class Game {
         int asciiMax = 57;
         int size = matrix.length;
         int[][] copyMatrix = new int[size][size];
-        boolean flag = false;
+        char [] ch;
         String step;
-        String option = "";
         String[] stepParts;
 
 
@@ -24,40 +23,66 @@ public class Game {
                 copyMatrix[i][j] = matrix[i][j];
             }
         }
+        GridGenerator.SolveSudoku(matrix, 0, 0);
 
         while(!GridGenerator.isGridFull(copyMatrix)){
             System.out.println("Make a move! (format : 1,1,1)");
             step = input.next();
 
-            //ascii values 0 = 48, 9 = 57
-            stepParts = step.split(",");
-            for(int i = 0; i < stepParts.length; i++){
-                ascii = stepParts[i].charAt(0);
-                if(asciiMin < ascii  && ascii < asciiMax){
-                    flag = true;
-                }
-                else{
-                    System.out.println("Invalid input! \nYour number has to be from 0-9.");
-                    flag = false;
-                    step = input.next();
+
+            int valid = 0;
+            /*
+            int counter = 0;
+            ch = step.toCharArray();
+            for (char c : ch) {
+                if (c == ',') {
+                    counter++;
+                    System.out.println("hell nah");
                 }
             }
+            if (counter == 2){
+                System.out.println("stupid");
+                valid++;
+            }
+            */
 
-            if(flag){
+            stepParts = step.split(",");
+            //ascii values 0 = 48, 9 = 57
+            for (String stepPart : stepParts) {
+                ascii = stepPart.charAt(0);
+                if (asciiMin <= ascii && ascii <= asciiMax) {
+                    valid = 1;
+                    System.out.println("yes");
+                }
+                else {
+                    System.out.println("Invalid input! \nYour number has to be from 0-9.");
+                }
+            }
+            
+            if(valid == 1){
                 row = Integer.parseInt(stepParts[0]) - 1;
                 col = Integer.parseInt(stepParts[1]) - 1;
                 value = Integer.parseInt(stepParts[2]);
 
-                //check if move is valid
-                if(GridGenerator.SolveSudoku(copyMatrix, 0, 0)){
-                    GridGenerator.gridToString(copyMatrix);
-                    System.out.println("\n");
+                if(row >= 0 && row < 10 && col >= 0 && col < 10 && value < 10){
+
+                    if(copyMatrix[row][col] != 0){
+                        System.out.println("That cell is already taken :( Find your own!");
+                    }
+
+                    else{
+                        copyMatrix[row][col] = value;
+                        //check if move is valid
+                        if(value == matrix[row][col]){
+                            GridGenerator.gridToString(copyMatrix);
+                            System.out.println("\n");
+                        }
+                        else{
+                            System.out.println("Wrong answer buckaroo!\n");
+                            copyMatrix[row][col] = 0;
+                        }
+                    }
                 }
-                else{
-                    System.out.println("Wrong answer buckaroo!\n");
-                    copyMatrix[row][col] = matrix[row][col];
-                }
-                copyMatrix[row][col] = value;
             }
         }
         System.out.println("You win woo!");

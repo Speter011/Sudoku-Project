@@ -13,6 +13,7 @@ public class App {
         GridGenerator.fillGrid(grid);
         InterfaceInstance.InterfaceCreation(grid, input);
         GridGenerator.gridToString(grid);
+        System.out.println();
         //GridGenerator.SolveSudoku(grid, 0, 0);
         //System.out.println("\n");
         //GridGenerator.gridToString(grid);
