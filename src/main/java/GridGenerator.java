@@ -5,22 +5,22 @@ import java.util.Random;
 public class GridGenerator {
 
     private int[][] matrixFirst;
-    private final int size = 9;
+    private final static int Size = 9;
     private static int min = 1;
     private static int max = 9;
-    private int counter = 0;
+    private static int counter = 0;
 
     public GridGenerator() {
-        this.matrixFirst = new int[size][size];
+        this.matrixFirst = new int[Size][Size];
     }
 
-    public void gridToString(int[][] matrix) {
+    public static void gridToString(int[][] matrix) {
 
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < Size; i++) {
             // length returns number of rows
             //System.out.print("|" + i + "| ");
 
-            for (int j = 0; j < size; j++) {
+            for (int j = 0; j < Size; j++) {
                 if(matrix[i][j] == 0){
                     System.out.print("| | ");
                 }
@@ -33,22 +33,21 @@ public class GridGenerator {
     }
 
 
-    public boolean isGridFull(int[][] matrix) {
-        for (int i = 0; i < size; i++) {
+    public static boolean isGridFull(int[][] matrix) {
+        for (int i = 0; i < Size; i++) {
             // length returns number of rows
-            for (int j = 0; j < size; j++) {
+            for (int j = 0; j < Size; j++) {
                 // here length returns # of columns corresponding to current row
                 if (matrix[i][j] == 0) {
                     return false;
                 }
             }
         }
-        System.out.println("We have a full grid");
         return true;
     }
 
 
-    private boolean inRow(int [][] matrix, int value, int row) {
+    public static boolean inRow(int [][] matrix, int value, int row) {
         for (int i = 0; i < matrix[row].length; i++) {
             // here length returns # of columns corresponding to current row
             if (matrix[row][i] == value) {
@@ -58,7 +57,7 @@ public class GridGenerator {
         return false;
     }
 
-    private boolean inCol(int[][] matrix, int value, int col) {
+    public static boolean inCol(int[][] matrix, int value, int col) {
         for (int i = 0; i < matrix[col].length; i++) {
             // here length returns # of columns corresponding to current row
             if (matrix[i][col] == value) {
@@ -68,9 +67,9 @@ public class GridGenerator {
         return false;
     }
 
-    private boolean inSquare(int[][] matrix, int value, int row, int col) {
+    public static boolean inSquare(int[][] matrix, int value, int row, int col) {
         //identify which of the 9 squares we are using
-        int sqrt = (int) Math.sqrt(size);
+        int sqrt = (int) Math.sqrt(Size);
         int cornerRow = row - row % sqrt;
         int cornerColumn = col - col % sqrt;
 
@@ -88,17 +87,18 @@ public class GridGenerator {
     //public int[][] getMatrix() {return this.matrix;}
 
 
-    public boolean solveSudoku(int[][] matrix, int row, int col) {
+    public static boolean SolveSudoku(int[][] matrix, int row, int col) {
 
 
-        if (row == size - 1 && col == size)
+        if (row == Size - 1 && col == Size)
             return true;
-        if (col == size) {
+        if (col == Size) {
             row++;
             col = 0;
         }
-        if (matrix[row][col] != 0)
-            return solveSudoku(matrix, row, col + 1);
+        if (matrix[row][col] != 0){
+            return SolveSudoku(matrix, row, col + 1);
+        }
         for (int value = 1; value < 10; value++) {
             if (!inRow(matrix, value, row)) {
                 //check if value hasn't been used in column yet
@@ -107,7 +107,7 @@ public class GridGenerator {
                     if (!inSquare(matrix, value, row, col)) {
                         matrix[row][col] = value;
 
-                        if (solveSudoku(matrix, row, col))
+                        if (SolveSudoku(matrix, row, col))
                             return true;
                     }
                     matrix[row][col] = 0;
@@ -117,18 +117,18 @@ public class GridGenerator {
         return false;
     }
 
-    public boolean fillGrid(int[][] matrix) {
+    public static boolean fillGrid(int[][] matrix) {
         ArrayList<Integer> numberList = new ArrayList<Integer>();
-        for (int i = 1; i < size + 1; i++) {
+        for (int i = 1; i < Size + 1; i++) {
             numberList.add(i);
         }
 
         int row = 0;
         int col = 0;
         //find next empty cell
-        for (int i = 0; i < size * size; i++) {
-            row = i / size;
-            col = i % size;
+        for (int i = 0; i < Size * Size; i++) {
+            row = i / Size;
+            col = i % Size;
             if (matrix[row][col] == 0) {
                 Collections.shuffle(numberList);
                 //check if value hasn't been used yet in row
