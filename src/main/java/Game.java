@@ -58,7 +58,7 @@ public class Game {
                     System.out.println("Invalid input! \nYour number has to be from 0-9.");
                 }
             }
-            
+
             if(valid == 1){
                 row = Integer.parseInt(stepParts[0]) - 1;
                 col = Integer.parseInt(stepParts[1]) - 1;

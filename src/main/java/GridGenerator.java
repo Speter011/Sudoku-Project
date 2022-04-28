@@ -118,7 +118,7 @@ public class GridGenerator {
     }
 
     public static boolean fillGrid(int[][] matrix) {
-        ArrayList<Integer> numberList = new ArrayList<Integer>();
+        ArrayList<Integer> numberList = new ArrayList<>();
         for (int i = 1; i < Size + 1; i++) {
             numberList.add(i);
         }

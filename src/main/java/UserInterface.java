@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class UserInterface {
 
-    public void InterfaceCreation(int [][] matrix, Scanner input){
+    public int InterfaceCreation(int [][] matrix, Scanner input){
 
         String option = "";
         boolean valid = true;
@@ -18,15 +18,15 @@ public class UserInterface {
                     option = (input.next());
                     if(option.equals("1")) {
                         GridGenerator.removeNumbers(matrix, 81 - 79);//36 az eredeti
-                        return;
+                        return 1;
                     }
                     if(option.equals("2")) {
                         GridGenerator.removeNumbers(matrix, 81 - 27);
-                        return;
+                        return 1;
                     }
                     if(option.equals("3")) {
                         GridGenerator.removeNumbers(matrix, 81 - 19);
-                        return;
+                        return 1;
                     }
                     else {
                         System.out.println("Invalid input! \n(input should be 1, 2, or 3)");
@@ -43,5 +43,6 @@ public class UserInterface {
                 System.out.println("Invalid input! \n(Input should be 1, or 2)");
             }
         }
+        return 0;
     }
 }

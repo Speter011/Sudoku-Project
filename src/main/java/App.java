@@ -10,14 +10,23 @@ public class App {
         UserInterface InterfaceInstance = new UserInterface();
         Game GameInstance = new Game();
 
-        GridGenerator.fillGrid(grid);
-        InterfaceInstance.InterfaceCreation(grid, input);
-        GridGenerator.gridToString(grid);
-        System.out.println();
+
+
         //GridGenerator.SolveSudoku(grid, 0, 0);
         //System.out.println("\n");
         //GridGenerator.gridToString(grid);
-        GameInstance.MakeAMove(grid, input);
+        // initialise game
+        GridGenerator.fillGrid(grid);
+        int flag = InterfaceInstance.InterfaceCreation(grid, input);;
+        while (flag != 0) {
+            GridGenerator.gridToString(grid);
+            System.out.println();
+            // start game
+            GameInstance.MakeAMove(grid, input);
+            // initialise game
+            //GridGenerator.fillGrid(grid);
+            flag = InterfaceInstance.InterfaceCreation(grid, input);
+        }
         input.close();
     }
 }
